@@ -1,11 +1,11 @@
 alert('hallo');
 console.log('Вывел много много текста');
 
-const money = 10;
+const money = 20;
 console.log('money: ', money);
-const income = 15;
+const income = 16;
 console.log('income: ', income);
-const addExpenses = 19;
+const addExpenses = 14;
 console.log('addExpenses: ', addExpenses);
 const deposit = 100;
 console.log('deposit: ', deposit);
