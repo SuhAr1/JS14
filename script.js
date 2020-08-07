@@ -1,4 +1,5 @@
 alert('hallo');
+console.log('Вывел текст');
 
 const money = 10;
 const income = 15;
