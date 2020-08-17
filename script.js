@@ -19,7 +19,6 @@ let start = function() {
         money = prompt('Ваш ежемесячный доход?');
     }
     while (!isNumber(money)) {
-        money = prompt('Ваш ежемесячный доход?');
     }
 };
 start();
@@ -63,7 +62,6 @@ let resultOutput = function() {
     } else if (getTargetMonth() < 0) {
         console.log('Цель не будет достигнута');
     };
-    return getTargetMonth
 };
 resultOutput();
 
