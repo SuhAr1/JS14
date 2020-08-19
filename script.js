@@ -53,7 +53,8 @@ let appData = {
     },
 
     getBudget: function() {
-        return appData.budgetMonth / 30;
+        appData.budgetMonth = appData.budget - appData.expensesMonth;
+        appData.budgetDay =  Math.ceil(appData.budgetMonth / 30);
     },
 
     getTargetMonth: function() {
@@ -80,14 +81,10 @@ let appData = {
         };
         return appData.getTargetMonth
     },
-    
 };
 for(let keys in appData) {
     console.log('Свойство: ' + keys + ' значение' + appData[keys]);
 }
-// let accumulatedMonth = appData.getBudget();
-// appData.budgetDay = Math.ceil(accumulatedMonth / 30);
-
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
