@@ -82,16 +82,13 @@ let appData = {
         return appData.getTargetMonth
     },
 };
-for(let keys in appData) {
-    console.log('Свойство: ' + keys + ' значение' + appData[keys]);
-}
+
 appData.asking();
 appData.getExpensesMonth();
 appData.getBudget();
 appData.getTargetMonth();
 appData.getStatusIncome();
 appData.resultOutput();
-console.dir(appData);
 console.log('Расходы на месяц ', appData.expensesMonth);
 console.log(appData.getStatusIncome());
 console.log(appData.addExpenses.length);
@@ -100,3 +97,6 @@ console.log('Цель заработать', appData.mission, 'рублей');
 console.log('Бюджет на месяц: ', appData.budgetMonth);
 console.log('Бюджет на день: ', appData.budgetDay);
 
+for(let keys in appData) {
+    console.log('Свойство: ' + keys + ' значение' + appData[keys]);
+};
