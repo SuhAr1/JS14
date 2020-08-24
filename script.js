@@ -52,13 +52,16 @@ let appData = {
             while (addExpenses === null ||  addExpenses === "" || addExpenses.indexOf(",") === "-1" || addExpenses.indexOf(",") === "0");
             
                 appData.addExpenses = addExpenses.toLowerCase().split(', ');
-                for (let word of appData.addExpenses) {
-                    word = word.trim();
-                    word = word[0].toUpperCase() + word.slice(1);
-                }
+                let newArr = [];
+            for (let word of appData.addExpenses) {
+                word = word.trim();
+                word = word[0].toUpperCase() + word.slice(1);
+                newArr.push(word);
+                appData.addExpenses = newArr;
+            }
                 console.log(appData.addExpenses);
                 appData.deposit = confirm('Есть ли у вас депозит в банке');
-  
+
         let question;
         for (let i = 0; i < 2; i++) {
             do {
