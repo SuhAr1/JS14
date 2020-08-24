@@ -50,20 +50,17 @@ let appData = {
                 addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую', 'кино, театр');
             }
             while (addExpenses === null ||  addExpenses === "" || addExpenses.indexOf(",") === "-1" || addExpenses.indexOf(",") === "0");
-            
+
             appData.addExpenses = addExpenses.toLowerCase().split(', ');
+         
+            let newArr = [];
             for (let word of appData.addExpenses) {
                 word = word.trim();
                 word = word[0].toUpperCase() + word.slice(1);
-                
+                newArr.push(word);
+                appData.addExpenses = newArr;
             }
-                // function arrEdit (addExpenses) {
-                //     for (let i = 0; i < addExpenses.length; i++) {
-                //         addExpenses[i] = addExpenses[i].trim();
-                //         addExpenses[i] = addExpenses[i].charAt(0).toUpperCase() + addExpenses[i].slice(1).toLowerCase();
-                //     }
-                //     return addExpenses;
-                // }
+
                 console.log(appData.addExpenses);
                 appData.deposit = confirm('Есть ли у вас депозит в банке');
   
