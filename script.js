@@ -38,6 +38,7 @@ let start = document.getElementById('start'),
 
     let appData = {
         budget: 0,
+        budgetPeriod: 0,
         budgetDay: 0,
         budgetMonth: 0,
         income: {},
@@ -177,12 +178,12 @@ let start = document.getElementById('start'),
             }
         },
         calcPeriod: function() {
-            return appData.budgetMonth * periodSelect.value;
+            appData.budgetPeriod = appData.budgetMonth * periodSelect.value;
         }
     };
 
 start.addEventListener('click', appData.start);
-console.log('start: ', start);
+
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
