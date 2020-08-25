@@ -28,7 +28,7 @@ let start = document.getElementById('start'),
     periodAmount = document.querySelector('.period-amount'),
     incomeItems = document.querySelectorAll('.income-items');
     
-    let isNumber = function(n) {
+    const isNumber = function(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     };
 
@@ -55,11 +55,9 @@ let start = document.getElementById('start'),
                 if(salaryAmount.value !== '') {
                     start.removeAttribute('disabled');
                 } else {
-                    start.setAttribute('disabled', 'disabled');
+                    start.setAttribute('disabled', '');
                 }
             });
-
-            
 
             appData.getExpenses();
             appData.getIncome();
@@ -184,15 +182,18 @@ let start = document.getElementById('start'),
     };
 
 start.addEventListener('click', appData.start);
+console.log('start: ', start);
+
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', function() {
-    incomePeriodValue.value = appData.calcPeriod();
-});
-periodSelect.addEventListener('input', function() {
-    periodAmount.textContent = periodSelect.value;
-});
 
+appData.calcPeriodNum = appData.calcPeriod();
+if(!isNumber(appData.calcPeriodNum)){
+    periodSelect.addEventListener('input', function() {
+        incomePeriodValue.value = appData.calcPeriod();
+        periodAmount.textContent = periodSelect.value;
+    });
+}
     // appData.getTargetMonth();
     // appData.getStatusIncome();
     // appData.resultOutput();
