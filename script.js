@@ -52,7 +52,7 @@ let start = document.getElementById('start'),
         moneyDeposit: 0,
         start: function() {
             appData.budget = +salaryAmount.value;
-
+        
             appData.getExpenses();
             appData.getIncome();
             appData.getExpensesMonth();
@@ -61,6 +61,10 @@ let start = document.getElementById('start'),
             appData.getBudget();
 
             appData.showResult();
+
+            periodSelect.addEventListener('input', function() {
+                incomePeriodValue.value = appData.calcPeriod();
+            });
         },
         showResult: function() {
             budgetMonthValue.value = appData.budgetMonth;
@@ -176,9 +180,17 @@ let start = document.getElementById('start'),
         
     };
 // appData.start();
+
+appData.calcPeriodNum = appData.calcPeriod();
+// if(!isNumber(appData.calcPeriodNum)){
+// }    
+
+periodSelect.addEventListener('input', function() {
+    periodAmount.textContent = periodSelect.value;
+});
 start.addEventListener('click', appData.start);
 salaryAmount.addEventListener('input', function() {
-    if(salaryAmount.value !== '') {
+    if(salaryAmount.value !== '' && salaryAmount.value !== String) {
         start.removeAttribute('disabled');
     } else {
         start.setAttribute('disabled', '');
@@ -187,15 +199,6 @@ salaryAmount.addEventListener('input', function() {
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-
-appData.calcPeriodNum = appData.calcPeriod();
-if(!isNumber(appData.calcPeriodNum)){
-    periodSelect.addEventListener('input', function() {
-        incomePeriodValue.value = appData.calcPeriod();
-        periodAmount.textContent = periodSelect.value;
-    });
-}
-
 
     // appData.getTargetMonth();
     // appData.getStatusIncome();
