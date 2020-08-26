@@ -32,13 +32,8 @@ let start = document.getElementById('start'),
         return !isNaN(parseFloat(n)) && isFinite(n);
     };
 
-    // let amount = 0,
-    //     expenses = [];
-        
-
     let appData = {
         budget: 0,
-        budgetPeriod: 0,
         budgetDay: 0,
         budgetMonth: 0,
         income: {},
@@ -60,6 +55,7 @@ let start = document.getElementById('start'),
             appData.getAddIncome();
             appData.getBudget();
 
+            appData.calcPeriod();
             appData.showResult();
 
             periodSelect.addEventListener('input', function() {
@@ -73,7 +69,7 @@ let start = document.getElementById('start'),
             additionalExpensesValue.value = appData.addExpenses.join(', ');
             additionalIncomeValue.value = appData.addIncome.join(', ');
             targetMonthValue.value = appData.getTargetMonth();
-            incomePeriodValue.value = appData.budgetPeriod;
+            incomePeriodValue.value = appData.calcPeriod();
         },
         addExpensesBlock: function() {
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -175,16 +171,12 @@ let start = document.getElementById('start'),
             }
         },
         calcPeriod: function() {
-            appData.budgetPeriod = appData.budgetMonth * periodSelect.value;
+            return appData.budgetMonth * periodSelect.value;
         }
-        
     };
-// appData.start();
 
 appData.calcPeriodNum = appData.calcPeriod();
-// if(!isNumber(appData.calcPeriodNum)){
-// }    
-
+ 
 periodSelect.addEventListener('input', function() {
     periodAmount.textContent = periodSelect.value;
 });
@@ -204,16 +196,3 @@ incomePlus.addEventListener('click', appData.addIncomeBlock);
     // appData.getStatusIncome();
     // appData.resultOutput();
     // appData.getInfoDeposit();
-
-// console.log('Расходы на месяц ', appData.expensesMonth);
-// console.log(appData.getStatusIncome());
-// console.log(appData.addExpenses.length);
-// console.log('Период равен', appData.period, 'месяцев');
-// console.log('Цель заработать', appData.mission, 'рублей');
-// console.log('Бюджет на месяц: ', appData.budgetMonth);
-// console.log('Бюджет на день: ', appData.budgetDay);
-// console.log('addExpenses: ', appData.addExpenses);
-// console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney());
-// for(let keys in appData) {
-//     console.log('Свойство: ' + keys + ' значение: ' + appData[keys]);
-// }
