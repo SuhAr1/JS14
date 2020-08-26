@@ -51,14 +51,7 @@ let start = document.getElementById('start'),
         percentDeposit: 0,
         moneyDeposit: 0,
         start: function() {
-            appData.budget = salaryAmount.value;
-            salaryAmount.addEventListener('input', function() {
-                if(salaryAmount.value !== '') {
-                    start.removeAttribute('disabled');
-                } else {
-                    start.setAttribute('disabled', '');
-                }
-            });
+            appData.budget = +salaryAmount.value;
 
             appData.getExpenses();
             appData.getIncome();
@@ -76,7 +69,7 @@ let start = document.getElementById('start'),
             additionalExpensesValue.value = appData.addExpenses.join(', ');
             additionalIncomeValue.value = appData.addIncome.join(', ');
             targetMonthValue.value = appData.getTargetMonth();
-            incomePeriodValue.value = appData.calcPeriod();
+            incomePeriodValue.value = appData.budgetPeriod;
         },
         addExpensesBlock: function() {
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -180,10 +173,17 @@ let start = document.getElementById('start'),
         calcPeriod: function() {
             appData.budgetPeriod = appData.budgetMonth * periodSelect.value;
         }
+        
     };
-
+// appData.start();
 start.addEventListener('click', appData.start);
-
+salaryAmount.addEventListener('input', function() {
+    if(salaryAmount.value !== '') {
+        start.removeAttribute('disabled');
+    } else {
+        start.setAttribute('disabled', '');
+    }
+});
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
@@ -195,6 +195,8 @@ if(!isNumber(appData.calcPeriodNum)){
         periodAmount.textContent = periodSelect.value;
     });
 }
+
+
     // appData.getTargetMonth();
     // appData.getStatusIncome();
     // appData.resultOutput();
