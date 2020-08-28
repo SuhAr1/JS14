@@ -58,12 +58,13 @@ let start = document.getElementById('start'),
             this.getAddExpenses();
             this.getAddIncome();
             this.calcPeriod();
-            
+
             this.showResult();
 
             periodSelect.addEventListener('input', function() {
                 incomePeriodValue.value = appData.calcPeriod();
             });
+            appData.start();
         },
         reset: function() {
             
@@ -219,15 +220,16 @@ cancel.addEventListener('click', function() {
 
         document.querySelectorAll('.btn_plus').forEach(function(item) {
             item.disabled = false;
+            item.value = null;
         });
         start.style.display = 'block';
         cancel.style.display = 'none';
     });
 });
+appData.start();
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
-
     // appData.getTargetMonth();
     // appData.getStatusIncome();
     // appData.resultOutput();
