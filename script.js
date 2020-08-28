@@ -26,7 +26,10 @@ let start = document.getElementById('start'),
     targetAmount = document.querySelector('.target-amount'),
     periodSelect = document.querySelector('.period-select'),
     periodAmount = document.querySelector('.period-amount'),
-    incomeItems = document.querySelectorAll('.income-items');
+    incomeItems = document.querySelectorAll('.income-items'),
+    cancel = document.getElementById('cancel'),
+    inputs = document.querySelector('.data').querySelectorAll('[type="text"]');
+    console.log('inputs: ', inputs);
     
     const isNumber = function(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
@@ -70,6 +73,30 @@ let start = document.getElementById('start'),
             additionalIncomeValue.value = appData.addIncome.join(', ');
             targetMonthValue.value = appData.getTargetMonth();
             incomePeriodValue.value = appData.calcPeriod();
+
+            inputs.forEach(function(item) {
+                item.disablet = true;
+            });
+            document.querySelectorAll('.btn_plus').forEach(function(item) {
+                item.disabled = true;
+            });
+            start.style.display = 'none';
+            cancel.style.display = 'block';
+
+            cancel.addEventListener('click', function() {
+                inputs.forEach(function(item) {
+                    item.disabled = false;
+                });
+                document.querySelectorAll('.btn_plus').forEach(function(item) {
+                    item.disabled = false;
+                });
+                for(let key in inputs) {
+                    if(key = 11) break;
+                    inputs[key] = 0;
+                }
+                start.style.display = 'block';
+                cancel.style.display = 'none';
+            });
         },
         addExpensesBlock: function() {
             let cloneExpensesItem = expensesItems[0].cloneNode(true);
@@ -104,7 +131,7 @@ let start = document.getElementById('start'),
                     appData.income[itemIncome] = +cashIncome;
                 }
                 for (let key in appData.income) {
-                appData.incomeMonth += +appData.income[key];
+                    appData.incomeMonth += +appData.income[key];
             }
             });
         },
