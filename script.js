@@ -96,13 +96,18 @@ let start = document.getElementById('start'),
             });
             checkBox.checked = true;    // не хочет работать
             periodSelect.value = '0';
-            salaryAmount = 1;
             inputs.forEach(function(item) {
                 item.value = '';
             });
+            for (let i = 1; i < incomeItems.length; i++) {
+                incomeItems[i].parentNode.removeChild(incomeItems[i]);
+            }
             resultInputs.forEach(function(item) {
                 item.value = '';
             });
+            for (let i = 1; i < expensesItems.length; i++) {
+                expensesItems[i].parentNode.removeChild(expensesItems[i]);
+            }
         },
         showResult: function() {
             budgetMonthValue.value = this.budgetMonth;
