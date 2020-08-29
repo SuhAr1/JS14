@@ -76,13 +76,10 @@ let start = document.getElementById('start'),
                 document.querySelectorAll('.btn_plus').forEach(function(item) {
                     item.disabled = true;
                 });
-                let periodRange = document.querySelector('.period input[type = range]');
-                periodRange.checked = false;
-                checkBox.checked = false;   // не хочет работать
-                // salaryAmount
                 start.style.display = 'none';
                 cancel.style.display = 'block';
             });
+            // checkBox.style.pointerEvents = "none";
         },
         reset: function() {
             inputs.forEach(function(item) {
@@ -94,8 +91,9 @@ let start = document.getElementById('start'),
                 start.style.display = 'block';
                 cancel.style.display = 'none';
             });
-            checkBox.checked = true;    // не хочет работать
+            // checkBox.style.pointerEvents = "auto";
             periodSelect.value = '0';
+            periodAmount.textContent = 1;
             inputs.forEach(function(item) {
                 item.value = '';
             });
@@ -233,6 +231,8 @@ salaryAmount.addEventListener('input', function() {
 });
 periodSelect.addEventListener('input', function() {
     periodAmount.textContent = periodSelect.value;
+    console.log('periodSelect.value: ', periodSelect.value);
+    console.log('periodAmount.textContent: ', periodAmount.textContent);
 });
 
 start.addEventListener('click', appData.start.bind(appData));
