@@ -119,6 +119,11 @@ let start = document.getElementById('start'),
             for (let i = 1; i < expensesItems.length; i++) {
                 expensesItems[i].parentNode.removeChild(expensesItems[i]);
             }
+            if(salaryAmount.value !== '') {
+                start.removeAttribute('disabled');
+            } else {
+                start.setAttribute('disabled', '');
+            }
         },
         showResult: function() {
             budgetMonthValue.value = this.budgetMonth;
