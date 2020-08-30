@@ -28,9 +28,9 @@ let start = document.getElementById('start'),
     periodAmount = document.querySelector('.period-amount'),
     incomeItems = document.querySelectorAll('.income-items'),
     cancel = document.getElementById('cancel'),
-    checkBox = document.querySelectorAll('#deposit-check input[type=checkbox]'),
-    inputs = document.querySelectorAll('.data input[type = text]'),
-    resultInputs = document.querySelectorAll('.result input[type = text]');
+    checkBox = document.querySelector('input[type="checkbox"]'),
+    inputs = document.querySelectorAll('.data input[type = "text"]'),
+    resultInputs = document.querySelectorAll('.result input[type = "text"]');
     
     const isNumber = function(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
@@ -80,6 +80,15 @@ let start = document.getElementById('start'),
                 cancel.style.display = 'block';
             });
             // checkBox.style.pointerEvents = "none";
+
+            // if(cancel.style.display === "block"  && checkBox.checked === true) {
+            //     checkBox.checked = true;
+            // }
+            // if(cancel.style.display === "block"  && checkBox.checked === false) {
+            //     checkBox.checked = false;
+            // }
+
+            console.log('checkBox: ', checkBox);
         },
         reset: function() {
             inputs.forEach(function(item) {
@@ -92,6 +101,10 @@ let start = document.getElementById('start'),
                 cancel.style.display = 'none';
             });
             // checkBox.style.pointerEvents = "auto";
+            // if(cancel.style.display === "block"  && checkBox.checked === true) {
+            //     checkBox.checked = true
+            // }
+            checkBox.checked = false;
             periodSelect.value = '0';
             periodAmount.textContent = 1;
             inputs.forEach(function(item) {
