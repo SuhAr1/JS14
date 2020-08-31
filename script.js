@@ -29,8 +29,8 @@ let start = document.getElementById('start'),
     incomeItems = document.querySelectorAll('.income-items'),
     cancel = document.getElementById('cancel'),
     checkBox = document.querySelector('input[type="checkbox"]'),
-    inputs = document.querySelectorAll('.data input[type = "text"]'),
-    resultInputs = document.querySelectorAll('.result input[type = "text"]');
+    inputs = document.querySelectorAll('.data input[type="text"]'),
+    resultInputs = document.querySelectorAll('.result input[type="text"]');
     
     const isNumber = function(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
@@ -64,7 +64,6 @@ let start = document.getElementById('start'),
             // this.getTargetMonth();
             // this.resultOutput();
             // this.getInfoDeposit();
-
             this.showResult();
 
             periodSelect.addEventListener('input', function() {
@@ -79,16 +78,6 @@ let start = document.getElementById('start'),
                 start.style.display = 'none';
                 cancel.style.display = 'block';
             });
-            // checkBox.style.pointerEvents = "none";
-
-            // if(cancel.style.display === "block"  && checkBox.checked === true) {
-            //     checkBox.checked = true;
-            // }
-            // if(cancel.style.display === "block"  && checkBox.checked === false) {
-            //     checkBox.checked = false;
-            // }
-
-            console.log('checkBox: ', checkBox);
         },
         reset: function() {
             inputs.forEach(function(item) {
@@ -100,30 +89,42 @@ let start = document.getElementById('start'),
                 start.style.display = 'block';
                 cancel.style.display = 'none';
             });
-            // checkBox.style.pointerEvents = "auto";
-            // if(cancel.style.display === "block"  && checkBox.checked === true) {
-            //     checkBox.checked = true
-            // }
             checkBox.checked = false;
             periodSelect.value = '0';
             periodAmount.textContent = 1;
-            inputs.forEach(function(item) {
-                item.value = '';
+            periodAmount.innerHTML = periodSelect.value;
+            inputs.forEach(function(elem) {
+                elem.value = '';
             });
             for (let i = 1; i < incomeItems.length; i++) {
                 incomeItems[i].parentNode.removeChild(incomeItems[i]);
             }
-            resultInputs.forEach(function(item) {
-                item.value = '';
+            resultInputs.forEach(function(elem) {
+                elem.value = '';
             });
             for (let i = 1; i < expensesItems.length; i++) {
                 expensesItems[i].parentNode.removeChild(expensesItems[i]);
             }
+
             if(salaryAmount.value !== '') {
                 start.removeAttribute('disabled');
             } else {
                 start.setAttribute('disabled', '');
             }
+            this.budget = 0;
+            this.budgetDay = 0;
+            this.budgetMonth = 0;
+            this.income = {};
+            this.incomeMonth = 0;
+            this.addIncome = [];
+            this.expenses = {};
+            this.expensesMonth = 0;
+            this.addExpenses = [];
+            this.deposit = false;
+            this.percentDeposit = 0;
+            this.moneyDeposit = 0;
+
+            console.log(appData);
         },
         showResult: function() {
             budgetMonthValue.value = this.budgetMonth;
@@ -238,8 +239,6 @@ let start = document.getElementById('start'),
         }
     };
 
-// appData.calcPeriodNum = appData.calcPeriod();
-
 salaryAmount.addEventListener('input', function() {
     if(salaryAmount.value !== '') {
         start.removeAttribute('disabled');
@@ -249,12 +248,10 @@ salaryAmount.addEventListener('input', function() {
 });
 periodSelect.addEventListener('input', function() {
     periodAmount.textContent = periodSelect.value;
-    console.log('periodSelect.value: ', periodSelect.value);
-    console.log('periodAmount.textContent: ', periodAmount.textContent);
 });
 
 start.addEventListener('click', appData.start.bind(appData));
-cancel.addEventListener('click', appData.reset);
+cancel.addEventListener('click', appData.reset.bind(appData));
 
 expensesPlus.addEventListener('click', appData.addExpensesBlock.bind(appData));
 incomePlus.addEventListener('click', appData.addIncomeBlock.bind(appData));
