@@ -111,6 +111,18 @@ AppData.prototype.reset = function() {
     } else {
         start.setAttribute('disabled', '');
     }
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.income = {};
+    this.incomeMonth = 0;
+    this.addIncome = [];
+    this.expenses = {};
+    this.expensesMonth = 0;
+    this.addExpenses = [];
+    this.deposit = false;
+    this.percentDeposit = 0;
+    this.moneyDeposit = 0;
 };
 AppData.prototype.showResult = function() {
     const _this = this;
@@ -240,7 +252,7 @@ AppData.prototype.eventListeners = function() {
     });
 
     start.addEventListener('click', appData.start.bind(appData));
-    cancel.addEventListener('click', appData.reset);
+    cancel.addEventListener('click', appData.reset.bind(appData));
 
     expensesPlus.addEventListener('click', appData.addExpensesBlock.bind(appData));
     incomePlus.addEventListener('click', appData.addIncomeBlock.bind(appData));
@@ -249,7 +261,5 @@ AppData.prototype.eventListeners = function() {
 const appData = new AppData();   
 
 AppData.prototype.eventListeners();
-console.log(appData);
-
 
 
