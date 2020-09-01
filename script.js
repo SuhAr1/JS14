@@ -109,6 +109,9 @@ class AppData {
         } else {
             start.setAttribute('disabled', '');
         }
+        incomePlus.style.display = 'block';
+        expensesPlus.style.display = 'block';
+        
         this.budget = 0;
         this.budgetDay = 0;
         this.budgetMonth = 0;
