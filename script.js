@@ -111,6 +111,9 @@ AppData.prototype.reset = function() {
     } else {
         start.setAttribute('disabled', '');
     }
+    incomePlus.style.display = 'block';
+    expensesPlus.style.display = 'block';
+
     this.budget = 0;
     this.budgetDay = 0;
     this.budgetMonth = 0;
@@ -260,6 +263,6 @@ AppData.prototype.eventListeners = function() {
 
 const appData = new AppData();   
 
-AppData.prototype.eventListeners();
+new AppData.prototype.eventListeners();
 
 
