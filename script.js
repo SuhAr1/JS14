@@ -52,6 +52,11 @@ class AppData {
     this.moneyDeposit = 0;
     }
     start() {
+        salaryAmount.value = salaryAmount.value.trim();
+        if(!isNumber(salaryAmount.value)) {
+            alert('Введите сумму месячного дохода');
+            return;
+        }
         this.budget = +salaryAmount.value;
         this.getExpenses();
         this.getIncome();
@@ -111,19 +116,8 @@ class AppData {
         }
         incomePlus.style.display = 'block';
         expensesPlus.style.display = 'block';
-        
-        this.budget = 0;
-        this.budgetDay = 0;
-        this.budgetMonth = 0;
-        this.income = {};
-        this.incomeMonth = 0;
-        this.addIncome = [];
-        this.expenses = {};
-        this.expensesMonth = 0;
-        this.addExpenses = [];
-        this.deposit = false;
-        this.percentDeposit = 0;
-        this.moneyDeposit = 0;
+
+        Object.assign(this, appData2);
     }
     showResult() {
         const _this = this;
@@ -211,7 +205,7 @@ class AppData {
         } else if (600 < this.budgetDay && this.budgetDay < 1200) {
             return(`У вас средний уровень дохода`);
         } else if (this.budgetDay < 600 && this.budgetDay > 0) {
-            return(`К сожалению у вас уровень дохода ниже среднег`);
+            return(`К сожалению у вас уровень дохода ниже среднего`);
         } else if (this.budgetDay < 0) {
             return(`Что то пошло не так`);
         }
@@ -252,16 +246,16 @@ class AppData {
             periodAmount.textContent = periodSelect.value;
         });
 
-        start.addEventListener('click', appData.start.bind(appData));
-        cancel.addEventListener('click', appData.reset.bind(appData));
+        start.addEventListener('click', this.start.bind(appData));
+        cancel.addEventListener('click', this.reset.bind(appData));
 
-        expensesPlus.addEventListener('click', appData.addExpensesBlock.bind(appData));
-        incomePlus.addEventListener('click', appData.addIncomeBlock.bind(appData));
+        expensesPlus.addEventListener('click', this.addExpensesBlock.bind(appData));
+        incomePlus.addEventListener('click', this.addIncomeBlock.bind(appData));
     }
 }
 
-const appData = new AppData();   
+const appData = new AppData();
+const appData2 = new AppData();
 
-AppData.prototype.eventListeners();
-
+appData.eventListeners();
 
