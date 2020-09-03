@@ -124,12 +124,6 @@ class AppData {
         depositBank.style.display = 'none';
         depositAmount.style.display = 'none';
         depositPercent.style.display = 'none';
-
-        // if(!isNumber(depositAmount.value || depositPercent.value)) {
-        //     start.removeAttribute('disabled');
-        // } else {
-        //     start.setAttribute('disabled', '');
-        // }
         depositBank.value = "";
         depositAmount.value = '';
         depositPercent.value = '';
